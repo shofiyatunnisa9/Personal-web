@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Personal Web </title>
+    <link rel="icon" href="assets/img/twitter.png"/>
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="main_menu" >
+        <ul class="navbar_links">
+            <img src="assets/img/twitter.png" style="width: 30px; height: auto;">
+            <li class="navbar_link">
+                <a href="index.html" >Home</a>
+            </li>
+
+            <li class="navbar_link">
+                <a href="blog.html">Blog</a>
+            </li>
+        </ul>
+        <a class="navbar_contact_button" href="contact.html" class="menu_active">Contact Me</a>
+    </div>
+    <div class="mobile_menu">
+        <img src="assets/img/twitter.png" style="width: 30px; height: auto;">
+        
+        <button type="button" id="hamburger_button" class="hamburger_button">☰</button>
+        
+    </div>
+</nav>
+    <div  id="mobile_menu_list" class="mobile_menu_list mobile_menu_hide">
+        <a href="index.html" >Home</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html" class="menu_active">Contact Me</a>
+
+    </div>
+    
+    
+    <form class="contact_form" onsubmit="submitForm(event)">
+        <h1> Contact Me !!</h1>
+        <div class="form_field">
+            <label for="name">Name</label>
+            <input id="name" type="text" required>
+        </div>
+        
+        <div class="form_field">
+            <label for="email">Email</label>
+            <input id="email" type="text" required>
+        </div>
+        
+        <div class="form_field">
+            <label for="subject">Subject</label>
+            <input id="subject" type="text" required>
+        </div>
+        <div class="form_field">
+            <label for="skill">Skill</label>
+            <select id="skill" required>
+                <option value="">Select any Skill..</option>
+                <option value="frontend">Frontend</option>
+                <option value="backend">Backend</option>
+            </select>  
+        </div>
+
+        <div class="form_field">
+            <label for="message">Message</label>
+            <textarea id="message" required></textarea>
+            
+        </div>
+        <button type="submit">Submit</button>
+        
+    </form>
+    
+    <script src="assets/js/belajar-js.js"></script>
+    <script src="assets/js/contact-form.js"></script>
+    <script src="assets/js/navbar.js"></script>
+</body>
+</body>
+</html>
