@@ -1,31 +1,31 @@
-let testimonials = [
-  {
-    autor: "shofiyatunnisa",
-    rating: 5,
-    caption: "keren banget",
-    image: "coding.jpg",
-  },
-  {
-    autor: "Min Yoongi",
-    rating: 3,
-    caption: "Manatapuuuuu",
-    image: "coding.jpg",
-  },
-  {
-    autor: "Kin Namjoon",
-    rating: 2,
-    caption: "Luar biazaa, tabarakallah",
-    image: "blog-img.png",
-  },
-  {
-    autor: "Lalamove",
-    rating: 5,
-    caption: "keren banget",
-    image: "coding.jpg",
-  },
-];
+// let testimonials = [
+//   {
+//     autor: "shofiyatunnisa",
+//     rating: 5,
+//     caption: "keren banget",
+//     image: "coding.jpg",
+//   },
+//   {
+//     autor: "Min Yoongi",
+//     rating: 3,
+//     caption: "Manatapuuuuu",
+//     image: "coding.jpg",
+//   },
+//   {
+//     autor: "Kin Namjoon",
+//     rating: 2,
+//     caption: "Luar biazaa, tabarakallah",
+//     image: "blog-img.png",
+//   },
+//   {
+//     autor: "Lalamove",
+//     rating: 5,
+//     caption: "keren banget",
+//     image: "coding.jpg",
+//   },
+// ];
 
-const testimonialsContainer = document.getElementById("testimonialsContainer");
+// const testimonialsContainer = document.getElementById("testimonialsContainer");
 
 function fetchTestimonials() {
   return new Promise((resolve, reject) => {
@@ -36,24 +36,28 @@ function fetchTestimonials() {
     xhr.onload = function () {
       if (xhr.status === 200) {
         const response = JSON.parse(xhr.responseText);
-        console.log("Response :", xhr.responseText);
+        // console.log("Response :", response);
+        resolve(response.testimonials);
       } else {
-        console.error("Error :", xhr.status);
+        // console.error("Error :", xhr.status);
+        reject("Error :", xhr.status);
       }
     };
+    xhr.onerror = () => reject("network error");
     xhr.send();
   });
 }
+const testimonialsContainer = document.getElementById("testimonialsContainer");
 const testimonialsHTML = (daftarTestimoni) => {
   return daftarTestimoni
     .map(
       (testimonial) => `
         <article>
-            <img src="assets/img/${testimonial.image}" alt="testimonials_img">
+            <img src="${testimonial.image}" alt="testimonials_img">
             <p class="testimonial_item_caption">
                 <i>${testimonial.caption}</i>
             </p>
-            <p style="text-align: right;"> - ${testimonial.autor}</p>
+            <p style="text-align: right;"> - ${testimonial.author}</p>
             <p style="text-align: right; font-weight: bold;" >${testimonial.rating}★</p>
         </article>
         `
@@ -61,12 +65,17 @@ const testimonialsHTML = (daftarTestimoni) => {
     .join("");
 };
 
-function showAllTestimonials() {
+async function showAllTestimonials() {
+  const testimonials = await fetchTestimonials();
+  console.log(testimonials);
+
   testimonialsContainer.innerHTML = testimonialsHTML(testimonials);
 }
 showAllTestimonials();
 
-function filterTestimonialsByStar(rating) {
+async function filterTestimonialsByStar(rating) {
+  const testimonials = await fetchTestimonials();
+
   const filteredTestimonials = testimonials.filter(
     (testimonial) => testimonial.rating === rating
   );
