@@ -1,0 +1,24 @@
+{
+  "name": "personal-web-shofiyatunnisa",
+  "version": "1.0.0",
+  "description": "My first personal web",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shofiyatunnisa9/Personal-web.git"
+  },
+  "author": "shofiyatunnisa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shofiyatunnisa9/Personal-web/issues"
+  },
+  "homepage": "https://github.com/shofiyatunnisa9/Personal-web#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "hbs": "^4.2.0"
+  }
+}
