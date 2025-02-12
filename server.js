@@ -1,64 +1,71 @@
 const express = require("express");
 const app = express();
+const hbs = require("hbs");
+const path = require("path");
+const methodOverride = require("method-override");
+
+const {
+  renderBlog,
+  createBlog,
+  renderBlogDetail,
+  contact,
+  createBlogPage,
+  testimonials,
+  home,
+  deleteBlog,
+  updateBlog,
+  renderBlogEdit,
+} = require("./controllers/controller-v1");
+const { formatDateToWIB, getRelativeTime } = require("./utils/time");
+
 const port = 3000;
 
+// const { log } = require("console");
 app.set("view engine", "hbs");
+app.set("views", path.join(__dirname, "./views"));
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("assets"));
+app.use(methodOverride("_method"));
+
+hbs.registerPartials(__dirname + "/views/partials", function (err) {});
+hbs.registerHelper("equal", function (a, b) {
+  return a === b;
+});
+hbs.registerHelper("formatDateToWIB", formatDateToWIB);
+hbs.registerHelper("getRelativeTime", getRelativeTime);
 
 //HALAMAN HOME
-app.get("/", (req, res) => {
-  // res.send("Hello Express ! ini halaman Home");
-  res.render("index");
-});
+app.get("/", home);
 
 //CONTACT ME
-app.get("/contact", (req, res) => {
-  res.render("contact");
-});
+app.get("/contact", contact);
 
-// BLOG
-app.get("/blog", (req, res) => {
-  res.render("blog");
-});
+// BLOG LIST
+app.get("/blog", renderBlog);
+
+//CREATE BLOG PAGE
+app.get("/blog-create", createBlogPage);
+
+//SUBMIT NEW BLOG
+app.post("/blog-create", createBlog);
+
+//Edit Blog
+app.get("/blog-edit/:id", renderBlogEdit);
+
+// SUBMIT/SAVE UPDATE BLOG
+app.patch("/blog-update/:id", updateBlog);
+
+// DELETE EXISTING BLOG
+app.delete("/blog/:id", deleteBlog);
 
 // BLOG DETAIL
-app.get("/blog/:id", (req, res) => {
-  res.render("blog_detail");
-});
+app.get("/blog/:id", renderBlogDetail);
 
 //TESTIMONIAL
-app.get("/testimonials", (req, res) => {
-  res.render("testimonials");
-});
-
-// //REQUEST PARAMS
-// app.get("/about/:id", (req, res) => {
-//   const id = req.params.id;
-//   res.send(`Hello ini halaman tentang saya ${id}`);
-// });
-
-// //REQUEST QUERY
-
-// app.get("/blog", (req, res) => {
-//   //   const title = req.query.title;
-//   //   const author = req.query.author;
-//   //   const year = req.query.year;
-//   const { title, author, year } = req.query;
-
-//   res.send(`ini halaman blog ${title} dengan author ${author} tahun ${year}`);
-// });
+app.get("/testimonials", testimonials);
 
 app.listen(port, () => {
   console.log(`My personal web and listening on post ${port}`);
 });
-// const express = require("express");
-// const app = express();
-// const port = 3000;
-
-// app.get("/", (req, res) => {
-//   res.send("Hello everyone  mymy!");
-// });
-// app.listen(port, () => {
-//   console.log(`My personal web app listening on part ${port}`);
-// });

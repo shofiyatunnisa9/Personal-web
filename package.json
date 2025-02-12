@@ -19,6 +19,7 @@
   "homepage": "https://github.com/shofiyatunnisa9/Personal-web#readme",
   "dependencies": {
     "express": "^4.21.2",
-    "hbs": "^4.2.0"
+    "hbs": "^4.2.0",
+    "method-override": "^3.0.0"
   }
 }
