@@ -2,7 +2,7 @@
 
 
 <!-- Edit blog -->
-<form id="create-blog" action="/blog-update/{{index}}?_method=PATCH" method="post" class="create_blog_form">
+<form id="create-blog" action="/blog-update/{{blog.id}}?_method=PATCH" method="post" class="create_blog_form">
     <h1>Edit Blog</h1>
 
     <div class="input-group mb-3">
@@ -22,7 +22,7 @@
         <label class="input-group-text" for="image">Upload</label>
     </div>
     <div class="button_container">
-        <button type="submit">Submit</button>
+        <button type="submit">Save</button>
     </div>
 
 </form>

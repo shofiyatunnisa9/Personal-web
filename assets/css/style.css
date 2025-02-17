@@ -221,12 +221,15 @@ nav{
     gap: 20px;
     margin-bottom: 20px;
 }
-.blog_item_img img{
-    width: 40%;
+.blog_item img{
+    width: 70%;
+    
+    
 
 }
 .blog_item_text{
     flex: 1;
+    /* display: block; */
 }
 .blog_item_button {
     text-align: right;
