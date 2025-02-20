@@ -10,6 +10,11 @@ nav{
     background-color: beige;
     padding: 5px 40px;
 }
+
+/* AUTH */
+.auth-form{
+    
+}
 .main_menu{
    
     display: flex;

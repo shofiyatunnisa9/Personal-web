@@ -3,9 +3,11 @@
 <!-- Blog List -->
 <main>
     <h1 style="text-align: center; margin-top: 30px;">My Blogs</h1>
+    {{#if user}}
     <div style="width: 90%; margin:  auto; text-align: right;">
         <a href="/blog-create" class="blog_post_button">Create Blog</a>
     </div>
+    {{/if}}
     <section id="blog_list" class="blog_list">
 
         {{#each blogs}}
@@ -14,6 +16,7 @@
                 <img src="{{this.image}}" alt="" />
             </div>
             <div class="blog_item_text" style="text-align: justify; text-decoration: none;">
+                {{#if (equal ../user.id this.authorId)}}
                 <div class="blog_item_button">
                     <a href="/blog-edit/{{this.id}}" class="btn btn-secondary">Edit Blog</a>
                     <form style="display: inline;" action="/blog/{{this.id}}?_method=DELETE" method="post">
@@ -22,13 +25,13 @@
 
                     </form>
                 </div>
-
+                {{/if}}
                 <a href="/blog/{{this.id}}" style="text-decoration: none;">
                     <h1 class="blog_item_title">{{this.title}}</h1>
 
                 </a>
 
-                <p>{{formatDateToWIB this.createdAt}} | {{this.authorId}} </p>
+                <p>{{formatDateToWIB this.createdAt}} | {{this.user.name}} </p>
                 <p style="padding-top: -20px;"> Last Edit : {{formatDateToWIB this.updatedAt}}</p>
 
                 <p>

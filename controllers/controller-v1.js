@@ -1,5 +1,6 @@
 const { Sequelize, QueryTypes } = require("sequelize");
 const config = require("../config/config.json");
+const { logger } = require("sequelize/lib/utils/logger");
 const sequelize = new Sequelize(config.development);
 
 let blogs = [
@@ -78,7 +79,10 @@ function testimonials(req, res) {
 }
 
 function home(req, res) {
-  res.render("index");
+  const user = req.session.user;
+  console.log("usernya adalah :", user);
+
+  res.render("index", { user: user });
 }
 async function renderBlogEdit(req, res) {
   const id = req.params.id;
