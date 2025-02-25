@@ -6,7 +6,7 @@ const methodOverride = require("method-override");
 const flash = require("express-flash");
 const session = require("express-session");
 
-const { contact, testimonials } = require("./controllers/controller-v1");
+// const { contact, testimonials } = require("./controllers/controller-v1");
 const {
   renderHome,
   renderLogin,
